@@ -1,0 +1,26 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "target": "ES2022",
+    "outDir": "dist",
+    "rootDir": "src",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@pricehunt/shared": ["../../packages/shared/src/index.ts"],
+      "@pricehunt/shared/*": ["../../packages/shared/src/*"],
+      "@pricehunt/core": ["../../packages/core/src/index.ts"],
+      "@pricehunt/core/*": ["../../packages/core/src/*"],
+      "@pricehunt/database": ["../../packages/database/src/index.ts"],
+      "@pricehunt/database/*": ["../../packages/database/src/*"],
+      "@pricehunt/scraper-sdk": ["../../packages/scraper-sdk/src/index.ts"],
+      "@pricehunt/scraper-sdk/*": ["../../packages/scraper-sdk/src/*"],
+      "@pricehunt/notifications": ["../../packages/notifications/src/index.ts"],
+      "@pricehunt/notifications/*": ["../../packages/notifications/src/*"]
+    }
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["dist", "node_modules"]
+}

@@ -1,0 +1,14 @@
+{
+  "extends": "./tsconfig.base.json",
+  "files": [],
+  "references": [
+    { "path": "./packages/shared" },
+    { "path": "./packages/core" },
+    { "path": "./packages/database" },
+    { "path": "./packages/scraper-sdk" },
+    { "path": "./packages/notifications" },
+    { "path": "./apps/api" },
+    { "path": "./apps/web" },
+    { "path": "./apps/admin" }
+  ]
+}
