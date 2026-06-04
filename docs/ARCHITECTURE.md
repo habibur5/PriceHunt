@@ -149,7 +149,7 @@ PriceHunt/
 ### 5.1 Core domains
 
 - Catalog domain: products, brands, categories, product merges, specifications.
-- Pricing domain: offers, price history, availability, storefront snapshots.
+- Pricing domain: offers, price history, availability, storefront snapshots, price collection engine.
 - Search domain: text search, filters, ranking, SEO pages.
 - User domain: authentication, profiles, preferences, wishlists.
 - Alert domain: target price rules, trigger events, notification delivery.
@@ -161,11 +161,16 @@ PriceHunt/
 - ProductService: catalog read models and product management.
 - ComparisonService: store-wise comparisons and best-price resolution.
 - PriceHistoryService: timeline queries and derived aggregates.
+- PriceUpdateService: normalize scraper output, detect deltas, and persist snapshots.
+- PriceStatisticsService: rebuild aggregates and materialized summaries.
+- AvailabilityTrackingService: track stock and availability transitions.
 - WishlistService: user favorites and saved items.
 - AlertService: create, evaluate, pause, resume, and notify.
 - ScraperOrchestratorService: schedule and coordinate store scrapers.
 - MergeService: reconcile duplicate products and canonical mappings.
 - MonitoringService: health, job success rates, latency, and scraper status.
+
+Detailed flow for the price engine lives in [docs/PRICE_COLLECTION_ENGINE.md](PRICE_COLLECTION_ENGINE.md).
 
 ### 5.3 Infrastructure modules
 

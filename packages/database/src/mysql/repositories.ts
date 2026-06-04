@@ -133,6 +133,7 @@ export const createStoreProductRepository = (executor: MysqlExecutor): StoreProd
       base.findOneByColumns({ storeId, externalSku }, { includeDeleted: false }),
     listByStoreId: (storeId) => base.listBy('storeId', storeId),
     listByProductId: (productId) => base.listBy('productId', productId),
+    save: (entity) => base.save(entity),
   };
 };
 
@@ -153,6 +154,11 @@ export const createPriceHistoryRepository = (executor: MysqlExecutor): PriceHist
   const base = createMysqlCrudRepository<PriceHistoryEntity>(executor, 'price_history');
   return {
     ...base,
+    append: (entry) => base.save(entry),
+    findLatestByStoreProductId: (storeProductId) =>
+      base.listBy('storeProductId', storeProductId, { limit: 1 }).then((entries) => entries[0] ?? null),
+    findLatestByProductId: (productId) =>
+      base.listBy('productId', productId, { limit: 1 }).then((entries) => entries[0] ?? null),
     listByStoreProductId: (storeProductId) => base.listBy('storeProductId', storeProductId),
     listByProductId: (productId) => base.listBy('productId', productId),
   };

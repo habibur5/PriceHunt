@@ -64,9 +64,11 @@ export interface StoreRepository extends CrudRepository<StoreEntity> {
 }
 
 export interface StoreProductRepository extends CrudRepository<StoreProductEntity> {
+  findById(id: string): Promise<StoreProductEntity | null>;
   findByStoreAndSku(storeId: string, externalSku: string): Promise<StoreProductEntity | null>;
   listByStoreId(storeId: string): Promise<StoreProductEntity[]>;
   listByProductId(productId: string): Promise<StoreProductEntity[]>;
+  save(entity: StoreProductEntity): Promise<StoreProductEntity>;
 }
 
 export interface ProductMatchingRepository extends CrudRepository<ProductMatchingEntity> {
@@ -78,6 +80,9 @@ export interface ProductMatchingRepository extends CrudRepository<ProductMatchin
 }
 
 export interface PriceHistoryRepository extends CrudRepository<PriceHistoryEntity> {
+  append(entry: PriceHistoryEntity): Promise<PriceHistoryEntity>;
+  findLatestByStoreProductId(storeProductId: string): Promise<PriceHistoryEntity | null>;
+  findLatestByProductId(productId: string): Promise<PriceHistoryEntity | null>;
   listByStoreProductId(storeProductId: string): Promise<PriceHistoryEntity[]>;
   listByProductId(productId: string): Promise<PriceHistoryEntity[]>;
 }
