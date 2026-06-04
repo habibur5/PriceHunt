@@ -140,8 +140,12 @@ export const createProductMatchingRepository = (executor: MysqlExecutor): Produc
   const base = createMysqlCrudRepository<ProductMatchingEntity>(executor, 'product_matching');
   return {
     ...base,
+    findBySourceStoreProductId: (sourceStoreProductId) =>
+      base.findOneByColumns({ sourceStoreProductId }),
     listBySourceStoreProductId: (sourceStoreProductId) => base.listBy('sourceStoreProductId', sourceStoreProductId),
     listByCanonicalProductId: (canonicalProductId) => base.listBy('canonicalProductId', canonicalProductId),
+    listByStatus: (status) => base.listBy('status', status),
+    listPending: () => base.listBy('status', 'pending'),
   };
 };
 

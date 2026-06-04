@@ -70,8 +70,11 @@ export interface StoreProductRepository extends CrudRepository<StoreProductEntit
 }
 
 export interface ProductMatchingRepository extends CrudRepository<ProductMatchingEntity> {
+  findBySourceStoreProductId(sourceStoreProductId: string): Promise<ProductMatchingEntity | null>;
   listBySourceStoreProductId(sourceStoreProductId: string): Promise<ProductMatchingEntity[]>;
   listByCanonicalProductId(canonicalProductId: string): Promise<ProductMatchingEntity[]>;
+  listByStatus(status: ProductMatchingEntity['status']): Promise<ProductMatchingEntity[]>;
+  listPending(): Promise<ProductMatchingEntity[]>;
 }
 
 export interface PriceHistoryRepository extends CrudRepository<PriceHistoryEntity> {
